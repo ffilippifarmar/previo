@@ -6,7 +6,7 @@ import React,{Component} from 'react';
     };
 
     async componentDidMount(){
-        const res = await fetch("https://pokeapi.co/api/v2/pokemon/ditto")
+        const res = await fetch("https://pokeapi.co/api/v2/pokemon/")
         const data = await res.json();
         this.setState({pokemons: data})
         console.log(data)
@@ -21,7 +21,7 @@ import React,{Component} from 'react';
                    this.state.pokemons.map(pokemon => {
                         return (
                         <div>
-                            <h1>{pokemon}</h1>
+                            <h1>{pokemon.name}</h1>
                         </div>
                         )
                    })
