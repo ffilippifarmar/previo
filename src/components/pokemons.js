@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import './cards.css'
 
  class Pokemons extends Component{
     state = {
@@ -6,9 +7,9 @@ import React,{Component} from 'react';
     };
 
     async componentDidMount(){
-        const res = await fetch("https://pokeapi.co/api/v2/pokemon/")
+        const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=10000")
         const data = await res.json();
-        this.setState({pokemons: data})
+        this.setState({pokemons: data.results})
         console.log(data)
     }
 
@@ -16,19 +17,30 @@ import React,{Component} from 'react';
         return(
            
             <div> 
-                <h1>hola</h1>
+                <table className='tableother'>
+                <tr>
+                <th className="headers">Nombre</th>
+                <th className="headers">URL</th>
+                </tr>    
+                
                 {   
                    this.state.pokemons.map(pokemon => {
                         return (
-                        <div>
-                            <h1>{pokemon.name}</h1>
+                        <div key={pokemon.name} className="cardtext-centerm-3">                           
+                            <tr>
+                                <td className='fieldname'>{pokemon.name}</td>
+                                <td className='fieldurl'>{pokemon.url}</td>
+                            </tr>
                         </div>
+                       
                         )
                    })
                 }
+                </table>
             </div>
         )
     }
 }
+
 
 export default Pokemons;
